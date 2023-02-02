@@ -1,4 +1,4 @@
-import Todo from "../models/todo.js";
+import Todo from "../../models/todo.js";
 
 export default class TodosCtrl {
   static async apiGetTodos(_, res, next) {

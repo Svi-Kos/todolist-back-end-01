@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import * as dotenv from "dotenv";
-import todos from "./api/todos.route.js";
+import todos from "./api/todosApi/todos.route.js";
 
 dotenv.config();
 const { PORT = 4000, DB_HOST } = process.env;
