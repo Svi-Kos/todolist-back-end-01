@@ -1,9 +1,12 @@
 import Todo from "../../models/todo.js";
 
 export default class TodosCtrl {
-  static async apiGetTodos(_, res, next) {
+  static async apiGetTodos(req, res, next) {
     try {
-      const result = await Todo.find({});
+      const result = await Todo.find({ owner: req.user._id }).populate(
+        "owner",
+        "_id userName"
+      );
       res.json({
         status: "success",
         code: 200,
@@ -36,7 +39,8 @@ export default class TodosCtrl {
 
   static async apiAddTodo(req, res, next) {
     try {
-      const result = await Todo.create(req.body);
+      const newTodo = { ...req.body, owner: req.user._id };
+      const result = await Todo.create(newTodo);
 
       res.status(201).json({
         status: "success",

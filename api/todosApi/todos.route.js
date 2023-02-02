@@ -1,14 +1,15 @@
 import express from "express";
 import TodosCtrl from "./todos.controller.js";
+import authenticate from "../../middlewares/authenticate.js";
 
 const router = express.Router();
 
-router.route("/").get(TodosCtrl.apiGetTodos);
-router.route("/new").post(TodosCtrl.apiAddTodo);
+router.route("/").get(authenticate, TodosCtrl.apiGetTodos);
+router.route("/new").post(authenticate, TodosCtrl.apiAddTodo);
 router
   .route("/:id")
   .get(TodosCtrl.apiGetTodoById)
-  .patch(TodosCtrl.apiEditTodo)
-  .delete(TodosCtrl.apiDeleteTodo);
+  .patch(authenticate, TodosCtrl.apiEditTodo)
+  .delete(authenticate, TodosCtrl.apiDeleteTodo);
 
 export default router;
