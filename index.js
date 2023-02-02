@@ -5,7 +5,7 @@ import * as dotenv from "dotenv";
 import todos from "./api/todos.route.js";
 
 dotenv.config();
-const { PORT = 3000, DB_HOST } = process.env;
+const { PORT = 4000, DB_HOST } = process.env;
 
 const app = express();
 
@@ -18,8 +18,6 @@ app.use((err, _, res, __) => {
   const { status = 500, message = "server error" } = err;
   res.status(status).json({ error: message });
 });
-
-// app.listen(4000);
 
 await mongoose
   .set("strictQuery", false)
