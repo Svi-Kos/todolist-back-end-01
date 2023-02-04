@@ -6,7 +6,7 @@ const userSchema = Schema(
       type: String,
       required: [true, "Name is required"],
       unique: true,
-      maxlength: 10,
+      maxlength: 30,
     },
     password: {
       type: String,
